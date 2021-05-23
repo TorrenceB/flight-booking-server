@@ -1,0 +1,26 @@
+{
+  "name": "flight_booking_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TorrenceB/flight-booking-server.git"
+  },
+  "author": "Torrence B",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TorrenceB/flight-booking-server/issues"
+  },
+  "homepage": "https://github.com/TorrenceB/flight-booking-server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
