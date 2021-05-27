@@ -11,35 +11,23 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const cors = require("cors");
 
-const axios = require("axios").default;
+const fetchFlightData = require("./controllers/fetchFlightData");
 
-const fetchFlightData = () => {
-  const options = {
-    method: "GET",
-    url: "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/UK/GBP/en-GB/",
+app.use(cors());
+
+app.get("/", (req, res, next) => {
+  res.send("Landing view");
+});
+
+app.get("/places", (req, res, next) => {
+  fetchFlightData({
+    endpoint: "/autosuggest/v1.0/UK/GBP/en-GB/",
     params: { query: "Stockholm" },
-    headers: {
-      "x-rapidapi-key": "069dfdaf8bmshbf72b4525dae034p10dc6ejsn27b330717476",
-      "x-rapidapi-host":
-        "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-    },
-  };
-
-  const apiInstance = axios
-    .request(options)
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-  return apiInstance;
-};
-app.get("/", (req, res) => {
-  res.send("A response from the server");
-  fetchFlightData();
+  }).then((data) => {
+    res.json(data);
+  });
 });
 
 app.listen(port);
